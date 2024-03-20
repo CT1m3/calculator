@@ -2,11 +2,8 @@ package com.spring.calculator;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // @RestController anotacija nurodo, jog Spring tipo rezultatas turetu buti isspausdinamas kleintui toks koks yra
 @RestController
@@ -22,11 +19,14 @@ public class CalculatorController {
         // bean - atitinka singleton sablona
         HelloWorld bean = (HelloWorld) applicationContext.getBean("helloWorld");
         return bean.getHello();
-//        return "Skaiciuotuvas <p>" +
-//                "Galimos operacijos: <br>" +
-//                "&nbsp;&nbsp; sudeti <br>" +
-//                "&nbsp;&nbsp; atimti <br>" +
-//                "&nbsp;&nbsp; dauginti <br>" +
-//                "&nbsp;&nbsp; dalinti <br><p>";
+    }
+    @GetMapping("/abc")
+    public String test(@RequestParam(value = "name", defaultValue = "default value test") String name, String surname, int age){
+        return "Skaiciuotuvas <p>" +
+                "Galimos operacijos: <br>" +
+                "&nbsp;&nbsp; sudeti <br>" +
+                "&nbsp;&nbsp; atimti <br>" +
+                "&nbsp;&nbsp; dauginti <br>" +
+                "&nbsp;&nbsp; dalinti <br><p>" + name + " " + surname + " " + age;
     }
 }
