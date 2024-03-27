@@ -1,6 +1,11 @@
-package com.spring.calculator;
+package com.spring.calculator.controller;
 
+import com.spring.calculator.model.Number;
+import com.spring.calculator.service.NumberService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -10,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @Controller
+@EnableAutoConfiguration
 public class CalculatorController {
+    @Autowired
+    @Qualifier("NumberService")
+
+    public NumberService numberService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/")
     String home(Model model) {
         model.addAttribute("number", new Number());
@@ -40,6 +51,8 @@ public class CalculatorController {
             modelMap.put("sk2", sk2);
             modelMap.put("zenklas", zenklas);
             modelMap.put("rezultatas", rezultatas);
+
+            numberService.save(new Number(sk1, sk2, zenklas, rezultatas));
 
             return "skaiciuoti";
         }
