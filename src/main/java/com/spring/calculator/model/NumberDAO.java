@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface NumberDAO {
     void insertEntity(Number number);
-    Number findEntityByID(int id);
+    Number findEntityById(int id);
     List<Number> findEntities();
     void updateEntity(Number number);
-    void removeEntityByID(int id);
+    void removeEntityById(int id);
 }

@@ -7,7 +7,8 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
 public class NumberDAOImpl implements NumberDAO{
-    public void insertEntity(Number number){
+    @Override
+    public void insertEntity(Number number) {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
@@ -17,43 +18,63 @@ public class NumberDAOImpl implements NumberDAO{
         entityManager.getTransaction().commit();
         entityManager.close();
     }
-    public Number findEntityByID(int id){
-        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-        entityManager.getTransaction().begin();
 
-        List<Number> numbers = entityManager.createQuery("SELECT n FROM Number n WHERE n.id = :id").setParameter("id", id).getResultList();
+    @Override
+    public Number findEntityById(int id) {
+        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        List list = entityManager.
+                createQuery("SELECT n FROM Number n WHERE n.id = :id")
+                .setParameter("id", id)
+                .getResultList();
+
         entityManager.getTransaction().commit();
         entityManager.close();
-
-        return numbers.get(0);
+        return (Number) list.get(0);
     }
+
+    @Override
     public List<Number> findEntities() {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-        entityManager.getTransaction().begin();
-        List<Number> numbers = entityManager.createQuery("SELECT n FROM Number n", Number.class)
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        List list = entityManager.
+                createQuery("SELECT n FROM Number n")
                 .getResultList();
+
         entityManager.getTransaction().commit();
         entityManager.close();
-        return numbers;
+        return list;
     }
 
+    @Override
     public void updateEntity(Number number) {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-        entityManager.getTransaction().begin();
-        Number number2 = entityManager.find(Number.class, number.getId());
-        number2.setSk1(number.getSk1());
-        number2.setSk2(number.getSk2());
-        number2.setRezultatas(number.getRezultatas());
-        number2.setZenklas(number.getZenklas());
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        Number number1 = entityManager.find(Number.class, number.getId());
+        number1.setNum1(number.getNum1());
+        number1.setNum2(number.getNum2());
+        number1.setOperation(number.getOperation());
+        number1.setResult(number.getResult());
+
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public void removeEntityByID(int id) {
+    @Override
+    public void removeEntityById(int id) {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
-        entityManager.getTransaction().begin();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
         Number number = entityManager.find(Number.class, id);
         entityManager.remove(number);
+
         entityManager.getTransaction().commit();
         entityManager.close();
     }

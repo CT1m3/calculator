@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringConfig {
+
     @Bean
     @Qualifier("NumberDAO")
-    public NumberDAO getNumberDAO(){
+    public NumberDAO getNumberDAO() {
         return new NumberDAOImpl();
     }
+
     @Bean
     @Qualifier("NumberService")
     public NumberService getNumberService() {

@@ -4,85 +4,83 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "skaiciai")
-
+@Table(name = "numbers")
 public class Number {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "num_id")
     private int id;
-    @Min(value = 0, message = "Validacijos klaida: skaicius negali buti neigiamas")
-    @Column(name = "sk1")
-    private int sk1;
-    @Min(value = 0, message = "Validacijos klaida: skaicius negali buti neigiamas")
-    @Column(name = "sk1")
-    private int sk2;
-    @Column(name = "zenklas")
-    private  String zenklas;
-    @Column(name = "rezultatas")
-    private  int rezultatas;
+    @Min(value=0, message = "Validacijos klaida: skaičius negali būti neigiamas.")
+    @Column(name = "num1")
+    private int num1;
+    @Min(value=0, message = "Validacijos klaida: skaičius negali būti neigiamas.")
+    @Column(name = "num2")
+    private int num2;
+    @Column(name = "operation")
+    private String operation;
+    @Column(name = "result")
+    private int result;
 
-    public Number(){
-    }
-
-    public Number(int sk1, int sk2, String zenklas, int rezultatas){
-        this.sk1 = sk1;
-        this.sk2 = sk2;
-        this.zenklas = zenklas;
-        this.rezultatas = rezultatas;
-    }
-    public Number(int id, int sk1, int sk2, String zenklas, int rezultatas){
+    public Number(int id, int num1, int num2, String operation, int result) {
         this.id = id;
-        this.sk1 = sk1;
-        this.sk2 = sk2;
-        this.zenklas = zenklas;
-        this.rezultatas = rezultatas;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.operation = operation;
+        this.result = result;
     }
+
+    public Number(int num1, int num2, String operation, int result) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.operation = operation;
+        this.result = result;
+    }
+    public Number() {}
 
     public int getId() {
         return id;
     }
 
-    public int getSk1() {
-        return sk1;
+    public int getNum1() {
+        return num1;
     }
 
-    public void setSk1(int sk1) {
-        this.sk1 = sk1;
+    public void setNum1(int num1) {
+        this.num1 = num1;
     }
 
-    public void setSk2(int sk2) {
-        this.sk2 = sk2;
+    public int getNum2() {
+        return num2;
     }
 
-    public void setZenklas(String zenklas) {
-        this.zenklas = zenklas;
+    public void setNum2(int num2) {
+        this.num2 = num2;
     }
 
-    public void setRezultatas(int rezultatas) {
-        this.rezultatas = rezultatas;
+    public String getOperation() {
+        return operation;
     }
 
-    public int getSk2() {
-        return sk2;
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
-    public String getZenklas() {
-        return zenklas;
+    public int getResult() {
+        return result;
     }
 
-    public int getRezultatas() {
-        return rezultatas;
+    public void setResult(int result) {
+        this.result = result;
     }
 
     @Override
     public String toString() {
         return "Number{" +
                 "id=" + id +
-                ", sk1=" + sk1 +
-                ", sk2=" + sk2 +
-                ", zenklas='" + zenklas + '\'' +
-                ", rezultatas=" + rezultatas +
+                ", num1=" + num1 +
+                ", num2=" + num2 +
+                ", operation='" + operation + '\'' +
+                ", result=" + result +
                 '}';
     }
 }

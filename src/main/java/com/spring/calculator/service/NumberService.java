@@ -4,7 +4,6 @@ import com.spring.calculator.model.Number;
 
 import java.util.List;
 
-
 public interface NumberService {
     List<Number> getAll();
     void save(Number number);
