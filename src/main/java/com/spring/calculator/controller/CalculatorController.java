@@ -79,4 +79,33 @@ public class CalculatorController {
             return "calculate";
         }
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/skaiciai")
+    public String getAllNumbers(Model model) {
+        model.addAttribute("skaiciai", numberService.getAll());
+        return "skaiciai";
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/rodyti{id}")
+    public String getById(@RequestParam("id") int id, Model model) {
+        model.addAttribute("skaicius", numberService.getById(id));
+        return "skaicius";
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/trinti{id}")
+    public String delete(@RequestParam("id") int id, Model model) {
+        numberService.delete(id);
+        model.addAttribute("skaiciai", numberService.getAll());
+        return "skaiciai";
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/atnaujinti{id}")
+    public String update(@RequestParam("id") int id, Model model) {
+        model.addAttribute("skaicius", numberService.getById(id));
+        return "atnaujinti";
+    }
+    //Kadangi atnaujinti skaiciu forma naudoja POST metoda, cia irgi reikia naudoti POST
+    @PostMapping ("/atnaujintiSkaiciu")
+    public String updateNumber(@ModelAttribute("skaicius") Number number) {
+        numberService.update(number);
+        return "redirect:/rodyti?id=" + number.getId();
+    }
+
+
 }

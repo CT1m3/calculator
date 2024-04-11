@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-// @SpringBootApplication anotacija yra lygi @Configuration, @EnableAutoConfiguration ir @ComponentScan
+// @SpringBootApplication anotacija yra lygi @Configuration, @EnableAutoConfiguration ir @ComponentScans
 // Nurodoma klasėje, turinčioje pagrindinį (main) metodą.
 @SpringBootApplication
 // WEB Kontroleris. Pažymi MVC valdiklį. Leidžia viduje naudoti @RequestMapping
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculatorApplication {
     public static void main(String[] args) {
         SpringApplication.run(CalculatorApplication.class, args);
-        System.out.println("Woohoo pirmoji spring boot aplikacija");
     }
 }
 

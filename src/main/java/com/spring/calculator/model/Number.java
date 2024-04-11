@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min;
 public class Number {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "num_id")
+    @Column(name = "id")
     private int id;
     @Min(value=0, message = "Validacijos klaida: skaičius negali būti neigiamas.")
     @Column(name = "num1")
@@ -36,6 +36,10 @@ public class Number {
         this.result = result;
     }
     public Number() {}
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
