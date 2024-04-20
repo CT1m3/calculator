@@ -2,7 +2,6 @@ package com.spring.calculator.validator;
 
 import com.spring.calculator.model.User;
 import com.spring.calculator.service.UserService;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -33,6 +33,7 @@
                     </div>
                 </spring:bind>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sukurti</button>
+                <h4 class="text-center"><a href="${contextPath}/prisijungti">Jau turite paskyrą? Prisijungti</a></h4>
             </form:form>
         </div>
     </body>
