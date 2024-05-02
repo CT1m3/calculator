@@ -5,6 +5,7 @@ import com.spring.calculator.repositories.UserRepository;
 import com.spring.calculator.service.UserService;
 import com.spring.calculator.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
-    @Autowired
     private UserService userService;
     @Autowired
     private UserValidator userValidator;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserController(@Qualifier("UserService") UserService userService) {
+        this.userService = userService;
+    }
     @GetMapping("/registracija")
     public String showRegistrationForm(Model model) {
         model.addAttribute("userForm", new User());

@@ -14,6 +14,8 @@ public class User {
     @Transient
     private String cnfPassword;
 
+    private String role;
+
     public User(){}
 
     public User(String email, String password, String cnfPassword) {
@@ -59,6 +61,14 @@ public class User {
 
     public void setCnfPassword(String cnfPassword) {
         this.cnfPassword = cnfPassword;
+    }
+
+    public String getAuthority() {
+        return role;
+    }
+
+    public void setAuthority(String role) {
+        this.role = role;
     }
 
     @Override
