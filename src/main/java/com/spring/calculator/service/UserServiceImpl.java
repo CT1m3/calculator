@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
     public void save(User user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         //Pagal nutylejima naujas vartotojas bus "user"
-        user.setAuthority("user");
+        user.setAuthority("ROLE_USER");
         userRepository.save(user);
     }
     @Override

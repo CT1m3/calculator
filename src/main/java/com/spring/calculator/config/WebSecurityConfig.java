@@ -1,23 +1,25 @@
 package com.spring.calculator.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.spring.calculator.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig{
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
+    }
+
     @Bean
     @Qualifier("BCryptPasswordEncoder")
     //Slaptazodziu sifravimui
@@ -25,17 +27,23 @@ public class WebSecurityConfig{
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests((authorize)->{
-            authorize.requestMatchers("/resources/**", "/registracija").permitAll();
-            authorize.requestMatchers("/resources/**", "/prisijungti").permitAll();
-            authorize.anyRequest().authenticated();
-        }).httpBasic(Customizer.withDefaults());
-        return http.build();
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(bCryptPasswordEncoder());
+
+        return authProvider;
     }
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(
+                auth -> auth.requestMatchers("/webapp/WEB-INF/jsp/**").permitAll());
+        http.authorizeHttpRequests(
+                auth -> auth.requestMatchers("/registracija").permitAll().anyRequest().authenticated())
+                .formLogin(login -> login.loginPage("/prisijungti").defaultSuccessUrl("/calculator", true).permitAll())
+                .logout(logout -> logout.logoutUrl("/prisijungti").permitAll());
+
+        return http.build();
     }
 
 }

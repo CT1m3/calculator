@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
     @Autowired
     private UserValidator userValidator;
     @Autowired
@@ -42,6 +42,7 @@ public class UserController {
     @GetMapping("/prisijungti")
     public String showLoginForm(Model model){
         model.addAttribute("userForm", new User());
+        System.out.println("Soup");
         return "prisijungti";
     }
     @PostMapping("/prisijungti")
