@@ -6,10 +6,14 @@ import com.spring.calculator.service.UserService;
 import com.spring.calculator.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -18,6 +22,8 @@ public class UserController {
     private UserValidator userValidator;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(@Qualifier("UserService") UserService userService) {
@@ -42,16 +48,6 @@ public class UserController {
     @GetMapping("/prisijungti")
     public String showLoginForm(Model model){
         model.addAttribute("userForm", new User());
-        System.out.println("Soup");
         return "prisijungti";
-    }
-    @PostMapping("/prisijungti")
-    public String processLoginForm(@ModelAttribute("userForm") User userForm, Model model){
-        User user = userRepository.findByEmail(userForm.getEmail());
-        if(user == null || !user.getPassword().equals(userForm.getPassword())){
-            model.addAttribute("errorMessage", "Username or password incorrect");
-            return "prisijungti";
-        }
-        return "redirect:/";
     }
 }

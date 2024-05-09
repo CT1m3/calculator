@@ -24,11 +24,11 @@ public class UserValidator implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
 
-        if (userService.findByEmail(user.getEmail()) != null) {
-            errors.rejectValue("email", "Duplicate.userForm.email");
+        if (userService.findByUsername(user.getUsername()) != null) {
+            errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 
         if (!user.getPassword().matches("^((?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])).{5,}$")){
             errors.rejectValue("password", "Regex.userForm.password");

@@ -33,7 +33,7 @@ public class CalculatorController {
 
     // Marsrutizavimo informacija. šiuo atveju, ji nurodo Spring karkasui,
     // jog visas HTTP užklausas, kurių kelias yra "/" apdoros metodas home().
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @RequestMapping(method = RequestMethod.GET, value = "/calculator")
     public String home(Model model) {
         // Jeigu model "number" nepraeina validacijos - per ji grazinamos validacijos klaidos į vaizda (view).
         model.addAttribute("number", new Number());

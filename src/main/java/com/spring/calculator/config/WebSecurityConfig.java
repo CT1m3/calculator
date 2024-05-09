@@ -37,13 +37,19 @@ public class WebSecurityConfig{
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-                auth -> auth.requestMatchers("/webapp/WEB-INF/jsp/**").permitAll());
-        http.authorizeHttpRequests(
-                auth -> auth.requestMatchers("/registracija").permitAll().anyRequest().authenticated())
-                .formLogin(login -> login.loginPage("/prisijungti").defaultSuccessUrl("/calculator", true).permitAll())
-                .logout(logout -> logout.logoutUrl("/prisijungti").permitAll());
+                auth -> auth.requestMatchers("/WEB-INF/jsp/**").permitAll());
 
+        http.authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/registracija").permitAll()
+                                .anyRequest().authenticated())
+                .formLogin(login -> login.loginPage("/prisijungti")
+                        .failureUrl("/prisijungti")
+                        .loginProcessingUrl("/loginUser")
+                        .defaultSuccessUrl("/calculator", true)
+                        .permitAll())
+                .logout(logout -> logout.logoutUrl("/prisijungti").permitAll());
         return http.build();
     }
+
 
 }

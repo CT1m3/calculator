@@ -13,11 +13,11 @@
     <body>
         <h1 class="text-center">Internetinis skaičiuotuvas</h1>
         <div class="container">
-            <form method="POST" modelAttribute="userForm" class="form-signin">
+            <form method="POST" modelAttribute="userForm" class="form-signin" action="loginUser">
                 <h3 class="form-heading">Prisijungimas</h3>
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <input name="email" type="text" class="form-control" placeholder="Prisijungimo vardas" autofocus="true" />
-                    <input name="password" type="password" class="form-control" placeholder="Slaptažodis" />
+                    <input id="username", path="username" name="username" type="text" class="form-control" placeholder="Prisijungimo vardas" autofocus="true" />
+                    <input id="password", path="password" name="password" type="password" class="form-control" placeholder="Slaptažodis" />
                     <span class="error-message">${errorMessage}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Prisijungti</button>

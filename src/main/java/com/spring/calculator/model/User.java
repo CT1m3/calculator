@@ -8,8 +8,9 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String email;
+    //Email acts as the user username!
+    @Column(name = "email")
+    private String username;
     private String password;
     @Transient
     private String cnfPassword;
@@ -18,15 +19,15 @@ public class User{
 
     public User(){}
 
-    public User(String email, String password, String cnfPassword) {
-        this.email = email;
+    public User(String username, String password, String cnfPassword) {
+        this.username = username;
         this.password = password;
         this.cnfPassword = cnfPassword;
     }
 
-    public User(int id, String email, String password, String cnfPassword) {
+    public User(int id, String username, String password, String cnfPassword) {
         this.id = id;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.cnfPassword = cnfPassword;
     }
@@ -35,8 +36,8 @@ public class User{
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -51,8 +52,8 @@ public class User{
         this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -63,11 +64,11 @@ public class User{
         this.cnfPassword = cnfPassword;
     }
 
-    public String getAuthority() {
+    public String getRole() {
         return role;
     }
 
-    public void setAuthority(String role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -75,7 +76,7 @@ public class User{
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", email='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", cnfPassword='" + cnfPassword + '\'' +
                 '}';

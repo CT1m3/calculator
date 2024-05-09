@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public void save(User user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        //Pagal nutylejima naujas vartotojas bus "user"
-        user.setAuthority("ROLE_USER");
+        //Default role will always be USER when creating a new account
+        user.setRole("ROLE_USER");
         userRepository.save(user);
     }
     @Override
-    public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 }

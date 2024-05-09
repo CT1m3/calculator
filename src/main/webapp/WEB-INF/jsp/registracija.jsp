@@ -14,10 +14,10 @@
         <div class="container">
             <form:form method="POST" modelAttribute="userForm" class="form-signin">
                 <h2 class="form-signin-heading">Naujos paskyros sukūrimas</h2>
-                <spring:bind path="email">
+                <spring:bind path="username">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:input type="text" path="email" class="form-control" placeholder="Email" autofocus="true"/>
-                        <form:errors path="email"/>
+                        <form:input type="text" path="username" class="form-control" placeholder="Email" autofocus="true"/>
+                        <form:errors path="username"/>
                     </div>
                 </spring:bind>
                 <spring:bind path="password">
