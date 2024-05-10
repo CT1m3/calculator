@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,29 +47,21 @@ public class UserController {
         }
     }
     @GetMapping("/prisijungti")
-    public String showLoginForm(Model model){
+    public String login(Model model){
         model.addAttribute("userForm", new User());
         return "prisijungti";
     }
-//    @PostMapping("/loginUser")
-//    public String processLoginForm(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, HttpSession session, Model model) {
-//        userValidator.validate(userForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            model.addAttribute("errorMessage", "Invalid username or password");
-//            return "prisijungti"; // Return the login form again with error message
-//        } else {
-//            // Here you can add your login logic, for example, checking the user credentials against the database
-//            User user = userRepository.findByUsername(userForm.getUsername());
-//
-//            if (user == null || !bCryptPasswordEncoder.matches(userForm.getPassword(), user.getPassword())) {
-//                model.addAttribute("errorMessage", "Invalid username or password");
-//                return "prisijungti"; // Return the login form again with error message
-//            } else {
-//                // If login is successful, you can store user information in the session
-//                session.setAttribute("loggedInUser", user);
-//                return "redirect:/dashboard"; // Redirect to the dashboard or any other page
-//            }
-//        }
-//    }
+    @PostMapping("/loginUser")
+    public String loginUser(@ModelAttribute("user") User loginUser, BindingResult result, RedirectAttributes redirectAttributes) {
+
+        userValidator.validate(loginUser, result);
+
+        if (result.hasErrors()) {
+            redirectAttributes.addAttribute("error", "true");
+            return "redirect:/prisijungti";
+        }
+
+        return "redirect:/calculator";
+    }
+
 }

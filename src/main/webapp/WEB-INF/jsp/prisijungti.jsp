@@ -56,7 +56,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 520px;
+    height: 600px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -127,6 +127,10 @@ a{
     text-decoration: none;
     text-align: center;
 }
+.error-message{
+    color: red;
+    text-align: center;
+}
 
 
     </style>
@@ -139,13 +143,15 @@ a{
 
     <form method="POST" modelAttribute="userForm" class="form-signin" action="loginUser">
         <h3>Prisijungimas</h3>
-
         <label for="username">Prisijungimo vardas</label>
-        <input id="username", path="username" name="username" type="text" class="form-control" placeholder="jonas@gmail.com" autofocus="true" />
+        <input id="username", path="username" name="username" type="text" class="form-control" autofocus="true" />
 
         <label for="password">Slaptažodis</label>
-        <input id="password", path="password" name="password" type="password" class="form-control" placeholder="Jonas1*" />
+        <input id="password", path="password" name="password" type="password" class="form-control"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="error-message" <% if (request.getParameter("error") != null) { %> style="display: block; margin-top: 15px;" <% } else { %> style="display: none" <% } %>>
+            Klaidingai įvesti duomenys!
+        </div>
 
         <button type="submit">Prisijungti</button>
         <div style="margin-top: 10px;"></div>

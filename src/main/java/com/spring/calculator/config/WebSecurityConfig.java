@@ -43,7 +43,7 @@ public class WebSecurityConfig{
                         auth -> auth.requestMatchers("/registracija").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(login -> login.loginPage("/prisijungti")
-                        .failureUrl("/prisijungti")
+                        .failureUrl("/prisijungti?error=true")
                         .loginProcessingUrl("/loginUser")
                         .defaultSuccessUrl("/calculator", true)
                         .permitAll())
