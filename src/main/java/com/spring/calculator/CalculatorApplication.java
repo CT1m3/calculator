@@ -1,15 +1,10 @@
 package com.spring.calculator;
 
-import com.spring.calculator.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
-// @SpringBootApplication anotacija yra lygi @Configuration, @EnableAutoConfiguration ir @ComponentScans
-// Nurodoma klasėje, turinčioje pagrindinį (main) metodą.
 @SpringBootApplication
-// WEB Kontroleris. Pažymi MVC valdiklį. Leidžia viduje naudoti @RequestMapping
-// @RestController anotacija nurodo, jog String tipo rezultatas turėtų būti išspausdinamas klientui toks koks yra.
 @RestController
 
 public class CalculatorApplication {
