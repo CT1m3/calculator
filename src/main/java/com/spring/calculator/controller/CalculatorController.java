@@ -40,8 +40,7 @@ public class CalculatorController {
             int num2 = Integer.parseInt(numbers.get("num2"));
             String operation = numbers.get("operation");
 
-            System.out.println("Results: " + numbers.entrySet());
-            int result = 0;
+            double result = 0;
 
             if (operation.equals("+")) {
                 result = num1 + num2;
@@ -50,14 +49,12 @@ public class CalculatorController {
             } else if (operation.equals("*")) {
                 result = num1 * num2;
             } else if (operation.equals("/")) {
-                result = num1 / num2;
+                result = (double) num1 / num2;
             }
             modelMap.put("num1", num1);
             modelMap.put("num2", num2);
             modelMap.put("operation", operation);
             modelMap.put("result", result);
-
-            System.out.println(num1);
 
             numberService.save(new Number(num1, num2, operation, result));
 

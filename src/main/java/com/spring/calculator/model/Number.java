@@ -19,9 +19,9 @@ public class Number {
     @Column(name = "operation")
     private String operation;
     @Column(name = "result")
-    private int result;
+    private double result;
 
-    public Number(int id, int num1, int num2, String operation, int result) {
+    public Number(int id, int num1, int num2, String operation, double result) {
         this.id = id;
         this.num1 = num1;
         this.num2 = num2;
@@ -29,7 +29,7 @@ public class Number {
         this.result = result;
     }
 
-    public Number(int num1, int num2, String operation, int result) {
+    public Number(int num1, int num2, String operation, double result) {
         this.num1 = num1;
         this.num2 = num2;
         this.operation = operation;
@@ -69,11 +69,11 @@ public class Number {
         this.operation = operation;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
-    public void setResult(int result) {
+    public void setResult(double result) {
         this.result = result;
     }
 
