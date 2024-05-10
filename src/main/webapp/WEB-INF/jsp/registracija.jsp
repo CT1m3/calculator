@@ -5,7 +5,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>    <title>Registracija</title>
+<head>
+    <title>Registracija</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

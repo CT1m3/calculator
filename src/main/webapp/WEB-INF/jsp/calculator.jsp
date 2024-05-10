@@ -24,6 +24,7 @@
                     <option value="/">Dalyba</option>
                 </select><p>
                 <input type="submit" value="skaiciuoti">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         </form>
         </form:form>
     </body>

@@ -57,6 +57,8 @@ public class CalculatorController {
             modelMap.put("operation", operation);
             modelMap.put("result", result);
 
+            System.out.println(num1);
+
             numberService.save(new Number(num1, num2, operation, result));
 
             return "calculate";
