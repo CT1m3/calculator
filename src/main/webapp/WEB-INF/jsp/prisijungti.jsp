@@ -56,7 +56,7 @@ body{
     bottom: -80px;
 }
 form{
-    height: 600px;
+    height: auto;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -143,7 +143,7 @@ a{
 
     <form method="POST" modelAttribute="userForm" class="form-signin" action="loginUser">
         <h3>Prisijungimas</h3>
-        <label for="username">Prisijungimo vardas</label>
+        <label for="username">Prisijungimo vardas (El. paštas)</label>
         <input id="username", path="username" name="username" type="text" class="form-control" autofocus="true" />
 
         <label for="password">Slaptažodis</label>
