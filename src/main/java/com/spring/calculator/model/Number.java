@@ -10,10 +10,10 @@ public class Number {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Min(value=0, message = "Validacijos klaida: skaičius negali būti neigiamas.")
+    @Min(value=0, message = "Skaičius negali būti neigiamas.")
     @Column(name = "num1")
     private int num1;
-    @Min(value=0, message = "Validacijos klaida: skaičius negali būti neigiamas.")
+    @Min(value=0, message = "Skaičius negali būti neigiamas.")
     @Column(name = "num2")
     private int num2;
     @Column(name = "operation")

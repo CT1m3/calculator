@@ -124,6 +124,9 @@ option{
 	color: white;
     background-color: #28272f;
 }
+.error{
+    color: red;
+}
 
     </style>
 </head>
@@ -140,9 +143,11 @@ option{
 
             <label for="num1">Pirmas Skaičius</label>
             <form:input id="num1" path="num1" type="number" autofocus="true"/>
+            <form:errors path="num1" cssClass="error"/>
 
             <label for="num2">Antras Skaičius</label>
             <form:input id="num2" path="num2" type="number"/>
+            <form:errors path="num2" cssClass="error"/>
 
             <label for="operation">Operacijos Ženklas</label>
             <select name="operation" id="operation">

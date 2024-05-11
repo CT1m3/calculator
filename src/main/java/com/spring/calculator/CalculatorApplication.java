@@ -13,3 +13,5 @@ public class CalculatorApplication {
     }
 }
 
+//TODO: remove default 0 value from calculator input form
+
