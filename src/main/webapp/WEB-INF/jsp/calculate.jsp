@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Skaičiuoti</title>
+    <title>Skaičiuotuvas</title>
     <jsp:include page="header.jsp"/>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">

@@ -24,9 +24,7 @@ public class CalculatorController {
     public NumberService numberService;
     @RequestMapping(method = RequestMethod.GET, value = "/calculator")
     public String home(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("number", new Number());
-        model.addAttribute("role",authentication.getAuthorities());
         return "calculator";
     }
     @PostMapping("/calculate")

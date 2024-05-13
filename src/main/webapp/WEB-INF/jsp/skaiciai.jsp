@@ -18,7 +18,6 @@
             background-color: #080710;
             color: white;
         }
-
         .container {
             max-width: 800px;
             margin: 50px auto;
