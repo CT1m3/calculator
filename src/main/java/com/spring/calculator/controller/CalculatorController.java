@@ -6,14 +6,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 @Controller
 @EnableAutoConfiguration
@@ -85,6 +82,9 @@ public class CalculatorController {
         numberService.update(number);
         return "redirect:/rodyti?id=" + number.getId();
     }
-
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/prisijungti";
+    }
 
 }

@@ -14,7 +14,5 @@ public class CalculatorApplication {
 }
 
 //TODO: remove default 0 value from calculator input form
-//TODO: Fix header
-//TODO: setup logout function
 //TODO: fix changing result value with many numbers after decimal point
 
