@@ -2,6 +2,8 @@ package com.spring.calculator.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User{
@@ -14,8 +16,9 @@ public class User{
     private String password;
     @Transient
     private String cnfPassword;
-
     private String role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Number> numbers;
 
     public User(){}
 
@@ -70,6 +73,14 @@ public class User{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Number> getNumbers() {
+        return numbers;
+    }
+
+    public void setNumbers(List<Number> numbers) {
+        this.numbers = numbers;
     }
 
     @Override

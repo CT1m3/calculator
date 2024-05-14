@@ -1,11 +1,16 @@
 package com.spring.calculator.controller;
 
 import com.spring.calculator.model.Number;
+import com.spring.calculator.model.User;
+import com.spring.calculator.repositories.UserRepository;
 import com.spring.calculator.service.NumberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,7 +20,8 @@ import java.util.HashMap;
 @Controller
 @EnableAutoConfiguration
 public class CalculatorController {
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     @Qualifier("NumberService")
     public NumberService numberService;
@@ -51,7 +57,15 @@ public class CalculatorController {
             modelMap.put("operation", operation);
             modelMap.put("result", result);
 
-            numberService.save(new Number(num1, num2, operation, result));
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username = ((UserDetails)principal).getUsername();
+
+            User currentUser = userRepository.findByUsername(username);
+
+            Number number = new Number(num1, num2, operation, result);
+            number.setUser(currentUser);
+
+            numberService.save(number);
 
             return "calculate";
         }

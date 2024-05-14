@@ -20,6 +20,9 @@ public class Number {
     private String operation;
     @Column(name = "result")
     private double result;
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Number(int id, int num1, int num2, String operation, double result) {
         this.id = id;
@@ -75,6 +78,12 @@ public class Number {
 
     public void setResult(double result) {
         this.result = result;
+    }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
