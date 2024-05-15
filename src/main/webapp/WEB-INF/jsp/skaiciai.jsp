@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,10 +110,13 @@
                     <td>${skaicius.result}</td>
 
                     <td>
-                        <a href="${atnaujinti}">Keisti</a>
-                        | <a href="${trinti}"
-                            onclick="if (!(confirm('Ar tikrai norite ištrinti šį įrašą?'))) return false">Trinti</a>
-                        | <a href="${rodyti}">Rodyti</a>
+                        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                            <a href="${atnaujinti}">Keisti</a>
+                            |
+                            <a href="${trinti}" onclick="return confirm('Ar tikrai norite ištrinti šį įrašą?')">Trinti</a>
+                            |
+                        </sec:authorize>
+                        <a href="${rodyti}">Rodyti</a>
                     </td>
                 </tr>
             </c:forEach>

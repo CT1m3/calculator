@@ -16,6 +16,7 @@ public class CalculatorApplication {
 //TODO: remove default 0 value from calculator input form
 //TODO: fix changing result value with many numbers after decimal point
 //TODO: Don't allow a user to register with the same gmail
+
 //TODO: Fix whitelabel page when user doesn't have permission
 //TODO: Remove delete/change options for users
 //TODO: Only show user calculations (admins see all calculations)
