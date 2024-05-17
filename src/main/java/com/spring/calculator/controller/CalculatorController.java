@@ -49,9 +49,13 @@ public class CalculatorController {
                 result = num1 - num2;
             } else if (operation.equals("*")) {
                 result = num1 * num2;
-            } else if (operation.equals("/")) {
+            } else if (operation.equals("/") && num2 != 0) {
                 result = (double) num1 / num2;
+            } else if(num2 == 0){
+                br.rejectValue("num2", "DivisionByZero.calculator.num2");
+                return "calculator";
             }
+
             modelMap.put("num1", num1);
             modelMap.put("num2", num2);
             modelMap.put("operation", operation);

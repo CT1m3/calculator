@@ -2,6 +2,7 @@ package com.spring.calculator.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "numbers")
